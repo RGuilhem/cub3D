@@ -1,3 +1,5 @@
+src/.*.swp
+.*.swp
 # Prerequisites
 *.d
 
