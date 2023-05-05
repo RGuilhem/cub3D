@@ -10,7 +10,7 @@ OBJ = ${SRC_DIR:.c=.o}
 NAME = cub3D
 
 INCLUDES = -Iincludes/
-LIB = libft.a libmlx.a
+LIB = libft/libft.a mlx_mac/libmlx.a
 
 %.o: %.c
 	${CC} ${FLAGS} ${INCLUDES} -c $< -o $@
@@ -18,11 +18,11 @@ LIB = libft.a libmlx.a
 all: ${NAME}
 
 ${LIB}:
-	cd mlx_mac && make && cp -v libmlx.a ../
-	cd libft/ && make && cp -v libft.a ../
+	cd mlx_mac/ && make
+	cd libft/ && make
 
 $(NAME): ${LIB} $(OBJ)
-	$(CC) ${FLAGS} $(OBJ) -L. -lmlx -lm -lft -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) ${FLAGS} $(OBJ) -L./libft -L./mlx_mac -lmlx -lm -lft -framework OpenGL -framework AppKit -o $(NAME)
 
 re: fclean all
 
