@@ -1,0 +1,13 @@
+NO ./textures/Stone1L.xpm
+SO ./textures/Stone1D.xpm
+WE ./textures/BrownbrickL.xpm
+EA ./textures/BrownbrickD.xpm
+
+F 220,100,0
+C 225,300,0
+
+111111
+100101
+101001
+1100N1
+111111
