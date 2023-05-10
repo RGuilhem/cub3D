@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 11:39:52 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/10 12:06:00 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ typedef struct s_map
 	t_color		c_color;
 	t_frame		textures[4];
 	t_player	player;
-	t_vec2i		map_size;
+	t_vec2i		size;
+	char		**grid;
 }			t_map;
 
 typedef struct s_gui
@@ -89,5 +90,8 @@ typedef struct s_gui
 
 int		map_load(t_map *map, char *map_path);
 void	read_lines(const char *path, char ***lines);
+int		parse_colors(t_map *map, char **lines);
+int		parse_textures(t_map *map, char **lines);
+int		parse_map(t_map *map, char **lines);
 
 #endif

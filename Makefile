@@ -4,7 +4,10 @@ RM = rm -rf
 
 SRC = main.c				\
 	  put_pixel.c			\
-	  map_load.c
+	  map_load.c			\
+	  parse_colors.c		\
+	  parse_textures.c		\
+	  parse_map.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}
 
