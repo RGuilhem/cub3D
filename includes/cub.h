@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 15:36:06 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/10 18:48:43 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct s_color
 
 typedef struct s_vec2f
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }			t_vec2f;
 
 typedef struct s_vec2i
