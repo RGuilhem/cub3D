@@ -6,17 +6,21 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 12:21:08 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/10 14:07:00 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
+# define EMPTY '0'
+# define WALL '1'
+
 # define WIN_W 1280
 # define WIN_H 720
 
 # define FOV 60 //TODO tranform to rad
+# define TEX_S 64
 
 typedef struct s_frame
 {

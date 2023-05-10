@@ -7,7 +7,8 @@ SRC = main.c				\
 	  map_load.c			\
 	  parse_colors.c		\
 	  parse_textures.c		\
-	  parse_map.c
+	  parse_map.c			\
+	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}
 

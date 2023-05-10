@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 12:08:57 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/10 14:29:39 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,61 @@ static void	init_mapgrid(t_map *map, char **lines)
 		if (ft_strlen(lines[i]) > max)
 			max = ft_strlen(lines[i]);
 	}
-	map->size.x = max;
-	map->size.y = i;
+	map->size = (t_vec2i){.x = max, .y = i};
 	map->grid = malloc(sizeof(char *) * map->size.y);
 	i = -1;
 	while (++i < map->size.y)
 		map->grid[i] = malloc(sizeof(char) * (map->size.x));
 }
 
+static int	add_map_elem(t_map *map, char **grid, int i, int j)
+{
+	static int	player_set;
+	char		c;
+
+	c = grid[i][j];
+	if (c == EMPTY || c == ' ')
+		map->grid[i][j] = EMPTY;
+	else if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !player_set)
+	{
+		map->grid[i][j] = EMPTY;
+		map->player.pos_map = (t_vec2i){.x = j, .y = i};
+		map->player.pos = (t_vec2f){.x = (j - 0.5) * TEX_S,
+			.y = (i - 0.5) * TEX_S};
+		player_set = 1;
+	}
+	else
+		return (0);
+	if (c == 'N')
+		map->player.dir = (t_vec2f){.x = 0, .y = -1};
+	else if (c == 'S')
+		map->player.dir = (t_vec2f){.x = 0, .y = 1};
+	else if (c == 'E')
+		map->player.dir = (t_vec2f){.x = 1, .y = 0};
+	else if (c == 'W')
+		map->player.dir = (t_vec2f){.x = -1, .y = 0};
+	return (1);
+}
+
 int	parse_map(t_map *map, char **lines)
 {
 	char	**grid;
+	int		i;
+	int		j;
 
 	grid = &lines[find_grid_start(lines)];
 	init_mapgrid(map, grid);
+	i = -1;
+	while (++i < map->size.y)
+	{
+		j = -1;
+		while (grid[i][++j])
+		{
+			if (!add_map_elem(map, grid, i, j))
+				return (0);
+		}
+		while (j < map->size.x)
+			map->grid[i][j++] = EMPTY;
+	}
 	return (1);
 }
