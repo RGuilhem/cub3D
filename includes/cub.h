@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 12:06:00 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/10 12:21:08 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,15 @@ typedef struct s_map
 	char		**grid;
 }			t_map;
 
+# define MAX_KEYS 6
+# define KEY_EMPTY -1
+
 typedef struct s_gui
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_frame	*screen;
+	int		keys_pressed[MAX_KEYS];
 }			t_gui;
 
 int		map_load(t_map *map, char *map_path);
@@ -93,5 +97,11 @@ void	read_lines(const char *path, char ***lines);
 int		parse_colors(t_map *map, char **lines);
 int		parse_textures(t_map *map, char **lines);
 int		parse_map(t_map *map, char **lines);
+
+void	setup_events(t_gui *gui);
+void	apply_events(t_gui *gui);
+void	init_keys_list(t_gui *gui);
+int		reg_keyup(int keycode, t_gui *gui);
+int		reg_keydown(int keycode, t_gui *gui);
 
 #endif
