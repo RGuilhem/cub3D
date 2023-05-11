@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:02:29 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/10 16:59:44 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/11 09:45:01 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ void	define_angle_of_rays(t_map *map)
 		a = atanh((opp * i) / define_lenght_direc(map->player.dir));
 		gen_matrix(a, map->player.m_rotations[i]);
 	}
+}
+
+void	initialise_rays(t_map *map)
+{
+	define_angle_of_rays(map);
+	create_rays(map);
 }

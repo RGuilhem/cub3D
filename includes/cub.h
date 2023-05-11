@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 18:48:43 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/11 10:30:00 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_gui
 	t_frame	*screen;
 }			t_gui;
 
-int	map_load(t_map *map, char *map_path);
+int		map_load(t_map *map, char *map_path);
+void	put_pixel(t_frame *fra, int x, int y, int color);
 
 #endif
