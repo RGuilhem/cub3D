@@ -10,6 +10,9 @@ SRC = main.c				\
 	  parse_map.c			\
 	  read_lines.c			\
 	  draw_line.c			\
+	  move_player.c			\
+	  rotate_player.c		\
+	  rotate_vec2f.c		\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}

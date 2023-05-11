@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 13:51:49 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 14:57:45 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_map
 # define KEY_S 1
 # define KEY_A 0
 # define KEY_D 2
+# define ROT_ANG -0.0523599
 
 typedef struct s_gui
 {
@@ -120,6 +121,9 @@ void	apply_events(t_data *data);
 void	init_keys_list(t_gui *gui);
 int		reg_keyup(int keycode, t_gui *gui);
 int		reg_keydown(int keycode, t_gui *gui);
+void	move_player(t_player *player, int keycode);
+void	rotate_player(t_player *player, int keycode);
+void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 
 void	put_pixel(t_frame *fra, int x, int y, int color);
 void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b);
