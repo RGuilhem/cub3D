@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:16:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 12:21:35 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 11:35:55 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,15 @@ void	init_keys_list(t_gui *gui)
 		gui->keys_pressed[i] = KEY_EMPTY;
 }
 
-void	apply_events(t_gui *gui)
+void	apply_events(t_data *data)
 {
-	int	i;
+	int		i;
+	t_gui	*gui;
+	t_map	*map;
 
 	i = -1;
+	gui = data->gui;
+	map = data->map;
 	while (++i < MAX_KEYS)
 	{
 		if (gui->keys_pressed[i] != KEY_EMPTY)

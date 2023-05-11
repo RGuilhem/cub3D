@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 11:23:11 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 11:55:17 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ typedef struct s_map
 
 # define MAX_KEYS 6
 # define KEY_EMPTY -1
+# define L_ARROW 123
+# define R_ARROW 124
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
 
 typedef struct s_gui
 {
@@ -97,6 +103,12 @@ typedef struct s_gui
 	int		keys_pressed[MAX_KEYS];
 }			t_gui;
 
+typedef struct s_data
+{
+	t_gui	*gui;
+	t_map	*map;
+}			t_data;
+
 int		map_load(t_map *map, char *map_path);
 void	read_lines(const char *path, char ***lines);
 int		parse_colors(t_map *map, char **lines);
@@ -104,10 +116,12 @@ int		parse_textures(t_map *map, char **lines);
 int		parse_map(t_map *map, char **lines);
 
 void	setup_events(t_gui *gui);
-void	apply_events(t_gui *gui);
+void	apply_events(t_data *data);
 void	init_keys_list(t_gui *gui);
 int		reg_keyup(int keycode, t_gui *gui);
 int		reg_keydown(int keycode, t_gui *gui);
+
 void	put_pixel(t_frame *fra, int x, int y, int color);
+void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b);
 
 #endif

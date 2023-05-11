@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 14:29:39 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 11:44:59 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int	find_grid_start(char **lines)
 
 static void	init_mapgrid(t_map *map, char **lines)
 {
-	int	max;
-	int	i;
+	size_t	max;
+	int		i;
 
 	i = -1;
-	max = INT_MIN;
+	max = 0;
 	while (lines[++i])
 	{
 		if (ft_strlen(lines[i]) > max)
