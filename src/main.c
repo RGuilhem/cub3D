@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 14:07:12 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 15:06:08 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ static int	init_gui(t_gui *gui)
 	return (1);
 }
 
+static void	reset_image(t_gui *gui, t_frame *frame)
+{
+	mlx_destroy_image(gui->mlx, frame->img);
+	frame->img = mlx_new_image(gui->mlx, WIN_W, WIN_H);
+	frame->address = mlx_get_data_addr(frame->img,
+			&frame->bpp, &frame->ll, &frame->endian);
+}
+
 static int	render_frame(t_data *data)
 {
 	t_gui		*gui;
@@ -34,6 +42,7 @@ static int	render_frame(t_data *data)
 	gui = data->gui;
 	map = data->map;
 	apply_events(data);
+	reset_image(gui, &gui->screen);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);
 	real_dir = (t_vec2f){.x = map->player.pos.x + map->player.dir.x * 15,
 		.y = map->player.pos.y + map->player.dir.y * 15};

@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 14:57:45 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 15:21:47 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct s_map
 # define KEY_A 0
 # define KEY_D 2
 # define ROT_ANG -0.0523599
+# define ROT_90 1.5708
+# define MOVE_SIZE 2
 
 typedef struct s_gui
 {
