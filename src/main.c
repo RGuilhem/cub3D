@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 16:25:20 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 17:31:33 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int	render_frame(t_data *data)
 {
 	t_gui		*gui;
 	t_map		*map;
-	t_vec2f		real_dir;
 
 	gui = data->gui;
 	map = data->map;
@@ -59,9 +58,8 @@ static int	render_frame(t_data *data)
 	reset_image(gui, &gui->screen);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->background.img, 0, 0);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);
-	real_dir = (t_vec2f){.x = map->player.pos.x + map->player.dir.x * 15,
-		.y = map->player.pos.y + map->player.dir.y * 15};
-	draw_line(&gui->screen, &map->player.pos, &real_dir);
+	create_rays(map);
+	draw_rays(gui, map);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->screen.img, 0, 0);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, gui->mlx_win);
 	return (1);
@@ -73,14 +71,14 @@ int	main(int argc, char *argv[])
 	t_map	map;
 	t_data	data;
 
-	(void) render_frame;
 	(void) argc;
 	(void) argv;
 //	map_load(&map, argv[1]);
-	map.player.dir = (t_vec2f){.x = 1, .y = 0};
+	map.player.dir = (t_vec2f){.x = 10, .y = 0};
 	map.player.pos = (t_vec2f){.x = 300, .y = 300};
 	init_gui(&gui);
 	setup_background(&gui, &map);
+	define_angle_of_rays(&map);
 	setup_events(&gui);
 	data = (t_data){.gui = &gui, .map = &map};
 	mlx_loop_hook(gui.mlx, render_frame, &data);

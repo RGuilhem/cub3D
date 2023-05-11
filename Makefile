@@ -14,6 +14,8 @@ SRC = main.c				\
 	  rotate_player.c		\
 	  rotate_vec2f.c		\
 	  setup_background.c	\
+	  draw_rays.c			\
+	  raycasting.c			\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}

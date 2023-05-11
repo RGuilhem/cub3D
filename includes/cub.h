@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 15:59:45 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 17:15:58 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,9 @@ void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 void	put_pixel(t_frame *fra, int x, int y, int color);
 void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b);
 void	setup_background(t_gui *gui, t_map *map);
+
+void	define_angle_of_rays(t_map *map);
+void	create_rays(t_map *map);
+void	draw_rays(t_gui *gui, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:02:29 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/11 09:45:01 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:29:09 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,19 @@ void	define_angle_of_rays(t_map *map)
 {
 	int			i;
 	double		opp;
-	double		adj;
 	double		a;
 
 	opp = WIN_W / NB_RAYS;
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
-		a = -atanh((opp * i) / define_lenght_direc(map->player.dir));
+		a = -atanl((opp * i) / define_lenght_direc(map->player.dir));
 		gen_matrix(a, map->player.m_rotations[NB_RAYS / 2 + i]);
 	}
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
-		a = atanh((opp * i) / define_lenght_direc(map->player.dir));
+		a = atanl((opp * i) / define_lenght_direc(map->player.dir));
 		gen_matrix(a, map->player.m_rotations[i]);
 	}
-}
-
-void	initialise_rays(t_map *map)
-{
-	define_angle_of_rays(map);
-	create_rays(map);
 }
