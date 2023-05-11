@@ -9,6 +9,7 @@ SRC = main.c				\
 	  parse_textures.c		\
 	  parse_map.c			\
 	  read_lines.c			\
+	  draw_line.c			\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}

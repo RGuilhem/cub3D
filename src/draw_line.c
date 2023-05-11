@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:35:57 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 11:56:17 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 14:08:23 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b)
 	while (++i <= step)
 	{
 		if (pos.x >= 0 && pos.x < WIN_W && pos.y >= 0 && pos.y < WIN_H)
-			put_pixel(frame, pos.x, pos.y, 0x00FFFFFF + 3 * i);
+			put_pixel(frame, pos.x, pos.y, 0x00FFFFFF);
 		pos.x += dir.x;
 		pos.y += dir.y;
 	}

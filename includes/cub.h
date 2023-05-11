@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 11:55:17 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 13:51:49 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_frame
 {
 	void	*img;
 	char	*address;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		ll;
 	int		endian;
 }				t_frame;
 
@@ -99,7 +99,7 @@ typedef struct s_gui
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_frame	*screen;
+	t_frame	screen;
 	int		keys_pressed[MAX_KEYS];
 }			t_gui;
 
