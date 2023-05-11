@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 14:07:00 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 11:23:11 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # define WIN_W 1280
 # define WIN_H 720
 
-# define FOV 60 //TODO tranform to rad
 # define TEX_S 64
+# define FOV 1.0472
+# define NB_RAYS 60
 
 typedef struct s_frame
 {
@@ -48,8 +49,8 @@ typedef struct s_color
 
 typedef struct s_vec2f
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }			t_vec2f;
 
 typedef struct s_vec2i
@@ -60,10 +61,10 @@ typedef struct s_vec2i
 
 typedef struct s_mat2x2
 {
-	float	elem1_1;
-	float	elem1_2;
-	float	elem2_1;
-	float	elem2_2;
+	double	elem1_1;
+	double	elem1_2;
+	double	elem2_1;
+	double	elem2_2;
 }			t_mat2x2;
 
 typedef struct s_player
@@ -71,8 +72,8 @@ typedef struct s_player
 	t_vec2f		pos;	 // (5 * 32, 7 * 32)
 	t_vec2i		pos_map; // (5, 7)
 	t_vec2f		dir;
-	t_mat2x2	m_rotations[WIN_W];
-	t_vec2f		rays[WIN_W]; //TODO change to something smaller?
+	t_mat2x2	m_rotations[NB_RAYS];
+	t_vec2f		rays[NB_RAYS]; //TODO change to something smaller?
 }			t_player;
 
 typedef struct s_map
@@ -107,5 +108,6 @@ void	apply_events(t_gui *gui);
 void	init_keys_list(t_gui *gui);
 int		reg_keyup(int keycode, t_gui *gui);
 int		reg_keydown(int keycode, t_gui *gui);
+void	put_pixel(t_frame *fra, int x, int y, int color);
 
 #endif
