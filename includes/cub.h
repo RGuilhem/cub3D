@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 15:21:47 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/11 15:59:45 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_gui
 	void	*mlx;
 	void	*mlx_win;
 	t_frame	screen;
+	t_frame	background;
 	int		keys_pressed[MAX_KEYS];
 }			t_gui;
 
@@ -129,5 +130,6 @@ void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 
 void	put_pixel(t_frame *fra, int x, int y, int color);
 void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b);
+void	setup_background(t_gui *gui, t_map *map);
 
 #endif
