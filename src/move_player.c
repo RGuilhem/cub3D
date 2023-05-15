@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:35:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 16:35:16 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:42:29 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	move_player(t_map *map, t_player *player, int keycode)
 		player->pos.x += move.x;
 	if (player->pos.y + move.y > 0 && player->pos.y + move.y < map->size.y)
 		player->pos.y += move.y;
-	player->pos_map.x = (int) player->pos.x / TEX_S;
-	player->pos_map.y = (int) player->pos.y / TEX_S;
+	player->pos_map.x = (int) player->pos.x;
+	player->pos_map.y = (int) player->pos.y;
 }
