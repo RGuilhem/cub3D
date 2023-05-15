@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 15:25:42 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:34:08 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	render_frame(t_data *data)
 {
 	t_gui		*gui;
 	t_map		*map;
+	char		debug[10000];
 
 	gui = data->gui;
 	map = data->map;
@@ -61,8 +62,12 @@ static int	render_frame(t_data *data)
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);
 	create_rays(map);
 	cast_rays(gui, map);
-	//draw_rays(gui, map);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->screen.img, 0, 0);
+	sprintf(debug, "pos: %f %f pos_map: %d %d dir: %f %f", map->player.pos.x, map->player.pos.y, map->player.pos_map.x, map->player.pos_map.y, map->player.dir.x, map->player.dir.y);
+	mlx_string_put(gui->mlx, gui->mlx_win, 10, 12, 0x00, debug);
+	sprintf(debug, "size: %d %d / %d %d", map->size.x * TEX_S, map->size.y * TEX_S, map->size.x, map->size.y);
+	mlx_string_put(gui->mlx, gui->mlx_win, 10, 30, 0x00, debug);
+	//draw_rays(gui, map);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, gui->mlx_win);
 	return (1);
 }

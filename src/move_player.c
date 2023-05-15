@@ -6,11 +6,12 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:35:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 15:25:18 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:35:16 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+#include <stdio.h>
 #include <math.h>
 
 void	setup_dir(t_vec2f *dir, t_player *player, int keycode)
@@ -34,7 +35,7 @@ void	setup_dir(t_vec2f *dir, t_player *player, int keycode)
 		rotate_vec2f(dir, &rot_left);
 }
 
-void	move_player(t_player *player, int keycode)
+void	move_player(t_map *map, t_player *player, int keycode)
 {
 	t_vec2f	move;
 	t_vec2f	dir;
@@ -52,8 +53,10 @@ void	move_player(t_player *player, int keycode)
 	else if (keycode == KEY_D)
 		move = (t_vec2f){.x = dir.x * MOVE_SIZE,
 			.y = dir.y * MOVE_SIZE};
-	player->pos.x += move.x;
-	player->pos.y += move.y;
-	player->pos_map.x = (int) player->pos.x % TEX_S;
-	player->pos_map.y = (int) player->pos.y % TEX_S;
+	if (player->pos.x + move.x > 0 && player->pos.x + move.x < map->size.x)
+		player->pos.x += move.x;
+	if (player->pos.y + move.y > 0 && player->pos.y + move.y < map->size.y)
+		player->pos.y += move.y;
+	player->pos_map.x = (int) player->pos.x / TEX_S;
+	player->pos_map.y = (int) player->pos.y / TEX_S;
 }

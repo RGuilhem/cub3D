@@ -6,11 +6,12 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:18:13 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 14:25:55 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:28:04 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+#include <stdio.h>
 
 static t_dda	cast_one_ray(t_vec2f *ray, t_map *map)
 {
@@ -48,6 +49,7 @@ void	cast_rays(t_gui *gui, t_map *map)
 	double	dist;
 	t_vec2f	start;
 	t_vec2f	end;
+	static	int	yessay;
 
 	i = -1;
 	while (++i < NB_RAYS)
@@ -57,6 +59,12 @@ void	cast_rays(t_gui *gui, t_map *map)
 			dist = dda.side_dist.y - dda.delta.y;
 		else
 			dist = dda.side_dist.x - dda.delta.x;
+		if (i == WIN_W / 2 && yessay++ % 60 == 0)
+		{
+			printf("ray: %f %f\n", map->player.rays[i].x, map->player.rays[i].y);
+			printf("dist hit: %f\n", dist);
+			printf("hit:     %d %d\n", dda.pos.x, dda.pos.y);
+		}
 		start = (t_vec2f){.x = i, .y = -(WIN_H / dist) / 2 + WIN_H / 2};
 		end = (t_vec2f){.x = i, .y = (WIN_H / dist) / 2 + WIN_H / 2};
 		draw_line(&gui->screen, &start, &end);

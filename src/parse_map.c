@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 15:05:25 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:33:01 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	add_map_elem(t_map *map, char **grid, int i, int j)
 	{
 		map->grid[i][j] = EMPTY;
 		map->player.pos_map = (t_vec2i){.x = j, .y = i};
-		map->player.pos = (t_vec2f){.x = (j - 0.5) * TEX_S,
-			.y = (i - 0.5) * TEX_S};
+		map->player.pos = (t_vec2f){.x = (j - 0.5),
+			.y = (i - 0.5)};
 		player_set = 1;
 	}
 	else

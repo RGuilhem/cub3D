@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:16:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 14:41:12 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 15:30:51 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ void	apply_events(t_data *data)
 	while (++i < MAX_KEYS)
 	{
 		if (gui->keys_pressed[i] == KEY_W)
-			move_player(&map->player, gui->keys_pressed[i]);
+			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == KEY_S)
-			move_player(&map->player, gui->keys_pressed[i]);
+			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == KEY_A)
-			move_player(&map->player, gui->keys_pressed[i]);
+			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == KEY_D)
-			move_player(&map->player, gui->keys_pressed[i]);
+			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == L_ARROW
 			|| gui->keys_pressed[i] == R_ARROW)
 			rotate_player(&map->player, gui->keys_pressed[i]);
