@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:02:29 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/15 09:58:33 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 10:09:12 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	define_angle_of_rays(t_map *map)
 	double		opp;
 	double		a;
 
-	opp = WIN_W / NB_RAYS;
+	opp = WIN_W / NB_RAYS / 20;
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
