@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:36:17 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/15 16:23:45 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:50:35 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@ void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda)
 	t_player	p;
 
 	p = map->player;
-	dda->delta.x = fabs(1 / (ray->x + 0.00001));
-	dda->delta.y = fabs(1 / (ray->y + 0.00001));
+	if (ray->x != 0)
+		dda->delta.x = fabs(1 / ray->x);
+	else
+		dda->delta.x = 0;
+	if (ray->y != 0)
+		dda->delta.y = fabs(1 / ray->y);
+	else
+		dda->delta.y = 0;
 	if (ray->x < 0)
 	{
 		dda->step.x = -1;

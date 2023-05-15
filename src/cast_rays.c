@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:18:13 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 16:28:04 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:57:04 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_dda	cast_one_ray(t_vec2f *ray, t_map *map)
 	init_dda(ray, map, &dda);
 	while (!done)
 	{
-		if (dda.side_dist.x < dda.side_dist.y)
+		if ((dda.side_dist.x < dda.side_dist.y && dda.side_dist.x != 0) || dda.side_dist.y == 0)
 		{
 			dda.side_dist.x += dda.delta.x;
 			dda.pos.x += dda.step.x;
@@ -36,7 +36,7 @@ static t_dda	cast_one_ray(t_vec2f *ray, t_map *map)
 			dda.pos.y += dda.step.y;
 			dda.horizontal_hit = 1;
 		}
-		if (map->grid[dda.pos.y][dda.pos.x])
+		if (map->grid[dda.pos.y][dda.pos.x] == 1)
 			done = 1;
 	}
 	return (dda);
@@ -55,10 +55,13 @@ void	cast_rays(t_gui *gui, t_map *map)
 	while (++i < NB_RAYS)
 	{
 		dda = cast_one_ray(&map->player.rays[i], map);
+		/*
 		if (dda.horizontal_hit)
 			dist = dda.side_dist.y - dda.delta.y;
 		else
 			dist = dda.side_dist.x - dda.delta.x;
+			*/
+		dist = define_lenght_direc(dda.side_dist);
 		if (i == WIN_W / 2 && yessay++ % 60 == 0)
 		{
 			printf("ray: %f %f\n", map->player.rays[i].x, map->player.rays[i].y);
