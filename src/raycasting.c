@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:02:29 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/11 17:29:09 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 09:58:33 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <math.h>
 #include <stdlib.h>
 
-static void	gen_matrix(double a, t_mat2x2 mat)
+static void	gen_matrix(double a, t_mat2x2 *mat)
 {	
-	mat.elem1_1 = cos(a);
-	mat.elem1_2 = -sin(a);
-	mat.elem2_1 = sin(a);
-	mat.elem2_2 = cos(a);
+	mat->elem1_1 = cos(a);
+	mat->elem1_2 = -sin(a);
+	mat->elem2_1 = sin(a);
+	mat->elem2_2 = cos(a);
 }
 
 void	create_rays(t_map *map)
@@ -57,12 +57,12 @@ void	define_angle_of_rays(t_map *map)
 	while (++i < NB_RAYS / 2)
 	{
 		a = -atanl((opp * i) / define_lenght_direc(map->player.dir));
-		gen_matrix(a, map->player.m_rotations[NB_RAYS / 2 + i]);
+		gen_matrix(a, &map->player.m_rotations[NB_RAYS / 2 + i]);
 	}
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
 		a = atanl((opp * i) / define_lenght_direc(map->player.dir));
-		gen_matrix(a, map->player.m_rotations[i]);
+		gen_matrix(a, &map->player.m_rotations[i]);
 	}
 }
