@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -O2 -g
+FLAGS = -Wall -Wextra -Werror -O2 -g -fsanitize=address
 RM = rm -rf
 
 SRC = main.c				\
@@ -16,6 +16,8 @@ SRC = main.c				\
 	  setup_background.c	\
 	  draw_rays.c			\
 	  raycasting.c			\
+	  cast_rays.c			\
+	  dda.c					\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}

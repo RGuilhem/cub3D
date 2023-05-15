@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 11:44:59 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 15:05:25 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	add_map_elem(t_map *map, char **grid, int i, int j)
 	c = grid[i][j];
 	if (c == EMPTY || c == ' ')
 		map->grid[i][j] = EMPTY;
+	else if (c == WALL)
+		map->grid[i][j] = WALL;
 	else if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !player_set)
 	{
 		map->grid[i][j] = EMPTY;
@@ -78,13 +80,13 @@ int	parse_map(t_map *map, char **lines)
 	int		i;
 	int		j;
 
-	grid = &lines[find_grid_start(lines)];
+	grid = &lines[find_grid_start(lines) + 1];
 	init_mapgrid(map, grid);
 	i = -1;
 	while (++i < map->size.y)
 	{
 		j = -1;
-		while (grid[i][++j])
+		while (grid[i][++j] && grid[i][j] != '\n')
 		{
 			if (!add_map_elem(map, grid, i, j))
 				return (0);

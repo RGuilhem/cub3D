@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:35:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 15:24:56 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 15:25:18 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@ void	move_player(t_player *player, int keycode)
 			.y = dir.y * MOVE_SIZE};
 	player->pos.x += move.x;
 	player->pos.y += move.y;
+	player->pos_map.x = (int) player->pos.x % TEX_S;
+	player->pos_map.y = (int) player->pos.y % TEX_S;
 }

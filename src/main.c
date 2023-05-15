@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 10:06:58 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 15:25:42 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../includes/mlx.h"
 #include "../libft/includes/libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 
 static int	init_gui(t_gui *gui)
@@ -59,10 +60,26 @@ static int	render_frame(t_data *data)
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->background.img, 0, 0);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);
 	create_rays(map);
-	draw_rays(gui, map);
+	cast_rays(gui, map);
+	//draw_rays(gui, map);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->screen.img, 0, 0);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, gui->mlx_win);
 	return (1);
+}
+
+static	void	print_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->size.y)
+	{
+		j = -1;
+		while (++j < map->size.x)
+			printf("%c", map->grid[i][j]);
+		printf("\n");
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -72,10 +89,8 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	(void) argc;
-	(void) argv;
-//	map_load(&map, argv[1]);
-	map.player.dir = (t_vec2f){.x = 10, .y = 0};
-	map.player.pos = (t_vec2f){.x = 300, .y = 300};
+	map_load(&map, argv[1]);
+	print_map(&map);
 	init_gui(&gui);
 	setup_background(&gui, &map);
 	define_angle_of_rays(&map);

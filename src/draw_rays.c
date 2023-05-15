@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 17:11:41 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 17:19:16 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 12:13:36 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	draw_rays(t_gui *gui, t_map *map)
 	i = -1;
 	while (++i < NB_RAYS)
 	{
-		real_dir = (t_vec2f){.x = map->player.pos.x + player->rays[i].x * 15,
-			.y = map->player.pos.y + player->rays[i].y * 15};
+		real_dir = (t_vec2f){.x = map->player.pos.x + player->rays[i].x * 200,
+			.y = map->player.pos.y + player->rays[i].y * 200};
 		draw_line(&gui->screen, &map->player.pos, &real_dir);
 	}
 }

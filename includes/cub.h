@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 17:15:58 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/15 14:32:22 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define TEX_S 64
 # define FOV 1.0472
-# define NB_RAYS 60
+# define NB_RAYS WIN_W
 
 typedef struct s_frame
 {
@@ -113,6 +113,21 @@ typedef struct s_data
 	t_map	*map;
 }			t_data;
 
+typedef struct s_dda
+{
+	t_vec2f	delta;
+	t_vec2i	step;
+	t_vec2f	side_dist;
+	t_vec2i	pos;
+	int		horizontal_hit;
+}			t_dda;
+
+typedef struct s_hit
+{
+	t_vec2i	pos;
+	int		horizontal_hit;
+}			t_hit;
+
 int		map_load(t_map *map, char *map_path);
 void	read_lines(const char *path, char ***lines);
 int		parse_colors(t_map *map, char **lines);
@@ -135,5 +150,8 @@ void	setup_background(t_gui *gui, t_map *map);
 void	define_angle_of_rays(t_map *map);
 void	create_rays(t_map *map);
 void	draw_rays(t_gui *gui, t_map *map);
+
+void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda);
+void	cast_rays(t_gui *gui, t_map *map);
 
 #endif

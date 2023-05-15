@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:36:17 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/11 10:05:50 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/15 14:28:26 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,31 @@
 #include <math.h>
 #include <stdlib.h>
 
-void	check_section(t_vec2f *ray, double delta_x, double delta_y, int *i)
+void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda)
 {
-	delta_x = sqrt(1 + (ray->y * ray->y) / (ray->x * ray->x));
-	delta_y = sqrt(1 + (ray->x * ray->x) / (ray->y * ray->y));
-}
+	t_player	p;
 
-void	check_step(t_vec2f ray, t_map *map, double delta_x, double delta_y)
-{
-	int		step_x;
-	int		step_y;
-	double	side_dist_x;
-	double	side_dist_y;
-
-	if (ray.x < 0)
+	p = map->player;
+	dda->delta.x = fabs(1 / (ray->x + 0.00001));
+	dda->delta.y = fabs(1 / (ray->y + 0.00001));
+	if (ray->x < 0)
 	{
-		step_x = -1;
-		side_dist_x = ((map->player.pos.x - map->player.pos_map.x) * delta_x);
+		dda->step.x = -1;
+		dda->side_dist.x = ((p.pos.x - p.pos_map.x) * dda->delta.x);
 	}
 	else
 	{
-		step_x = -1;
-		side_dist_x = ((map->player.pos_map.x + 1 - map->player.pos.x) * delta_x);	
+		dda->step.x = -1;
+		dda->side_dist.x = ((p.pos_map.x + 1 - p.pos.x) * dda->delta.x);
 	}
-	if (ray.y < 0)
+	if (ray->y < 0)
 	{
-		step_y = -1;
-		side_dist_y = ((map->player.pos.y - map->player.pos_map.y) * delta_y);
+		dda->step.y = -1;
+		dda->side_dist.y = ((p.pos.y - p.pos_map.y) * dda->delta.y);
 	}
 	else
 	{
-		step_y = 1;
-		side_dist_y = ((map->player.pos_map.y + 1 - map->player.pos.y) * delta_y);	
+		dda->step.y = 1;
+		dda->side_dist.y = ((p.pos_map.y + 1 - p.pos.y) * dda->delta.y);
 	}
-}
-
-void	dda(t_map *map)
-{
-	double	delta_x;
-	double	delta_y;
-	int		i;
-	t_vec2f	ray;
-
-	i = -1;
-	while (++i < NB_RAYS)
-	{
-		ray = map->player.rays[i];
-		check_section(&ray, delta_x, delta_y, &i);
-	}
-	check_step(ray, map, delta_x, delta_y);
 }
