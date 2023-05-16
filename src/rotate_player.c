@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:40:06 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 15:42:28 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:14:50 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_matrices(t_mat2x2 *rot_left, t_mat2x2 *rot_right)
 		sin(-ROT_ANG), cos(-ROT_ANG)};
 }
 
-void	rotate_player(t_player *player, int dir)
+void	rotate_player(t_player *player, int dir, int steps)
 {
 	static t_mat2x2	rot_left;
 	static t_mat2x2	rot_right;
@@ -32,8 +32,11 @@ void	rotate_player(t_player *player, int dir)
 		is_setup = 1;
 		init_matrices(&rot_left, &rot_right);
 	}
-	if (dir == L_ARROW)
-		rotate_vec2f(&player->dir, &rot_left);
-	else if (dir == R_ARROW)
-		rotate_vec2f(&player->dir, &rot_right);
+	while (steps--)
+	{
+		if (dir == L_ARROW)
+			rotate_vec2f(&player->dir, &rot_left);
+		else if (dir == R_ARROW)
+			rotate_vec2f(&player->dir, &rot_right);
+	}
 }

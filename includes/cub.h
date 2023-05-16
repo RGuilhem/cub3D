@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 15:42:03 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:19:56 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_map
 # define ROT_ANG -0.0523599
 # define ROT_90 1.5708
 # define MOVE_SIZE 0.05
+//# define MOUSE_SENS 30
 
 typedef struct s_gui
 {
@@ -145,7 +146,7 @@ void	init_keys_list(t_gui *gui);
 int		reg_keyup(int keycode, t_gui *gui);
 int		reg_keydown(int keycode, t_gui *gui);
 void	move_player(t_map *map, t_player *player, int keycode);
-void	rotate_player(t_player *player, int dir);
+void	rotate_player(t_player *player, int dir, int steps);
 void	handle_mice(t_gui *gui, t_map *map);
 void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 

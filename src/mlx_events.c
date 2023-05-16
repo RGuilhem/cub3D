@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:16:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 15:30:51 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:18:18 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	apply_events(t_data *data)
 			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == L_ARROW
 			|| gui->keys_pressed[i] == R_ARROW)
-			rotate_player(&map->player, gui->keys_pressed[i]);
+			rotate_player(&map->player, gui->keys_pressed[i], 1);
 	}
 }
 
