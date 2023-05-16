@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:58:35 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 16:19:09 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:54:29 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	setup_background(t_gui *gui, t_map *map)
 	{
 		x = -1;
 		while (++x < WIN_W)
-			put_pixel(&gui->background, x, y, 0x0077B5FE);
+			put_pixel(&gui->background, x, y, map->c_color);
 	}
 	while (++y < WIN_H)
 	{
 		x = -1;
 		while (++x < WIN_W)
-			put_pixel(&gui->background, x, y, 0x0070726E);
+			put_pixel(&gui->background, x, y, map->f_color);
 	}
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->background.img, 0, 0);
 }

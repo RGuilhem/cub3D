@@ -3,8 +3,8 @@ SO ./textures/BrownbrickL.xpm
 WE ./textures/Stone1D.xpm
 EA ./textures/BrownbrickD.xpm
 
-F 220,100,0
-C 225,300,0
+F 128,128,120
+C 135,206,250
 
 1111111111111111111
 1000000000000000001
