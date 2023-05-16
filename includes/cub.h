@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 09:00:11 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:04:39 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ enum e_map_dir
 	EA
 };
 
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}			t_color;
-
 typedef struct s_vec2f
 {
 	double	x;
@@ -69,17 +62,17 @@ typedef struct s_mat2x2
 
 typedef struct s_player
 {
-	t_vec2f		pos;	 // (5 * 32, 7 * 32)
-	t_vec2i		pos_map; // (5, 7)
+	t_vec2f		pos;
+	t_vec2i		pos_map;
 	t_vec2f		dir;
 	t_mat2x2	m_rotations[NB_RAYS];
-	t_vec2f		rays[NB_RAYS]; //TODO change to something smaller?
+	t_vec2f		rays[NB_RAYS];
 }			t_player;
 
 typedef struct s_map
 {
-	t_color		f_color;
-	t_color		c_color;
+	int			f_color;
+	int			c_color;
 	t_frame		textures[4];
 	t_player	player;
 	t_vec2i		size;
