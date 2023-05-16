@@ -20,6 +20,7 @@ SRC = main.c				\
 	  dda.c					\
 	  render_tex_line.c		\
 	  minimap.c				\
+	  handle_mice.c			\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}
