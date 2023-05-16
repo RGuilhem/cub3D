@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 14:02:08 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 15:18:56 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # define FOV 1.0472
 # define PITCH 100
 # define NB_RAYS WIN_W
+
+# define EMPTY_COL 0xFF000000
+# define WALL_COL 0x00FF0000
+# define PLAYER_COL 0x0000FF00
+# define PIX_PER_BLOCK 10
 
 typedef struct s_frame
 {
@@ -99,6 +104,7 @@ typedef struct s_gui
 	void	*mlx_win;
 	t_frame	screen;
 	t_frame	background;
+	t_frame	minimap;
 	int		keys_pressed[MAX_KEYS];
 }			t_gui;
 
@@ -145,11 +151,13 @@ void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 void	put_pixel(t_frame *fra, int x, int y, int color);
 void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b, int color);
 void	setup_background(t_gui *gui, t_map *map);
+void	init_minimap(t_gui *gui, t_map *map);
 
 void	define_angle_of_rays(t_map *map);
 double	define_lenght_direc(t_vec2f direc_player);
 void	create_rays(t_map *map);
 void	draw_rays(t_gui *gui, t_map *map);
+void	draw_minimap(t_gui *gui, t_map *map);
 
 void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda);
 void	cast_rays(t_gui *gui, t_map *map);
