@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 11:28:56 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:02:08 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define TEX_S 64
 # define FOV 1.0472
+# define PITCH 100
 # define NB_RAYS WIN_W
 
 typedef struct s_frame
@@ -114,6 +115,10 @@ typedef struct s_dda
 	t_vec2f	side_dist;
 	t_vec2i	pos;
 	int		horizontal_hit;
+	int		ray_num;
+	double	dist;
+	int		start;
+	int		end;
 }			t_dda;
 
 typedef struct s_hit
@@ -148,5 +153,6 @@ void	draw_rays(t_gui *gui, t_map *map);
 
 void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda);
 void	cast_rays(t_gui *gui, t_map *map);
+void	render_tex_line(t_dda *dda, t_gui *gui, t_map *map, t_vec2f *ray);
 
 #endif

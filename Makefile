@@ -18,6 +18,7 @@ SRC = main.c				\
 	  raycasting.c			\
 	  cast_rays.c			\
 	  dda.c					\
+	  render_tex_line.c		\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}

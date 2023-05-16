@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:18:13 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 12:49:43 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:05:30 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,22 @@ void	cast_rays(t_gui *gui, t_map *map)
 {
 	int		i;
 	t_dda	dda;
-	double	dist;
-	t_vec2f	start;
-	t_vec2f	end;
 
 	i = -1;
 	while (++i < NB_RAYS)
 	{
 		dda = cast_one_ray(&map->player.rays[i], map);
 		if (dda.horizontal_hit)
-			dist = dda.side_dist.y - dda.delta.y;
+			dda.dist = dda.side_dist.y - dda.delta.y;
 		else
-			dist = dda.side_dist.x - dda.delta.x;
-		start = (t_vec2f){.x = i, .y = -(WIN_H / dist) / 2 + WIN_H / 2};
-		end = (t_vec2f){.x = i, .y = (WIN_H / dist) / 2 + WIN_H / 2};
-		if (dda.horizontal_hit)
-			draw_line(&gui->screen, &start, &end, 0x00FF0000);
-		else
-			draw_line(&gui->screen, &start, &end, 0x00DF0000);
+			dda.dist = dda.side_dist.x - dda.delta.x;
+		dda.start = -(WIN_H / dda.dist) / 2 + WIN_H / 2;
+		if (dda.start < 0)
+			dda.start = 0;
+		dda.end = (WIN_H / dda.dist) / 2 + WIN_H / 2;
+		if (dda.end >= WIN_H)
+			dda.end = WIN_H - 1;
+		dda.ray_num = i;
+		render_tex_line(&dda, gui, map, &map->player.rays[i]);
 	}
 }

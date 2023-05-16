@@ -1,6 +1,6 @@
 NO ./textures/Stone1L.xpm
-SO ./textures/Stone1D.xpm
-WE ./textures/BrownbrickL.xpm
+SO ./textures/BrownbrickL.xpm
+WE ./textures/Stone1D.xpm
 EA ./textures/BrownbrickD.xpm
 
 F 220,100,0
