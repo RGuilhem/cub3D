@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 09:00:11 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:23:13 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ enum e_map_dir
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	END_MAP_DIR
 };
 
 typedef struct s_color
