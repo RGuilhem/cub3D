@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:51:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 09:18:06 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 10:32:41 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	init_rgb_from_line(int *r, int *g, int *b, char *line)
 	int		i;
 	char	*end;
 
+	(void) g;
+	(void) b;
 	i = -1;
 	while (!ft_isdigit(line[++i]))
 	{
