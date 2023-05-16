@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 16:34:32 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 17:22:47 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@
 # define WALL_COL 0x00FF0000
 # define PLAYER_COL 0x0000FF00
 # define PIX_PER_BLOCK 10
+
+//TODO exit program correctly
+//TODO error checking while parsing:
+//TODO     - color
+//TODO     - textures
+//TODO     - map
+//TODO malloc protection
+//TODO check with different order in map
+//TODO remove debug
+//TODO remove useless functions
+//TODO norme
 
 typedef struct s_frame
 {
