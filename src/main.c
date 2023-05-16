@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 16:40:40 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:00:26 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	(void) argc;
-	map_load(&map, argv[1]);
-	print_map(&map);
 	init_gui(&gui);
+	map_load(&gui, &map, argv[1]);
+	print_map(&map);
 	setup_background(&gui, &map);
 	define_angle_of_rays(&map);
 	setup_events(&gui);

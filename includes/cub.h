@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 16:35:51 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:00:11 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,10 @@ typedef struct s_hit
 	int		horizontal_hit;
 }			t_hit;
 
-int		map_load(t_map *map, char *map_path);
+int		map_load(t_gui *gui, t_map *map, char *map_path);
 void	read_lines(const char *path, char ***lines);
 int		parse_colors(t_map *map, char **lines);
-int		parse_textures(t_map *map, char **lines);
+int		parse_textures(t_gui *gui, t_map *map, char **lines);
 int		parse_map(t_map *map, char **lines);
 
 void	setup_events(t_gui *gui);

@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:36 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 11:54:20 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:01:01 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_suffix(char *map_path)
 	return (ft_strnstr(map_path, ".cub", ft_strlen(map_path)) != 0);
 }
 
-int	map_load(t_map *map, char *map_path)
+int	map_load(t_gui *gui, t_map *map, char *map_path)
 {
 	char	**lines;
 
@@ -27,7 +27,7 @@ int	map_load(t_map *map, char *map_path)
 	read_lines(map_path, &lines);
 	if (!lines)
 		return (0);
-	if (!parse_colors(map, lines) || !parse_textures(map, lines)
+	if (!parse_colors(map, lines) || !parse_textures(gui, map, lines)
 		|| !parse_map(map, lines))
 		return (0); // TODO cleanup in case of error
 	return (1);
