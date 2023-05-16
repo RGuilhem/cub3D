@@ -6,24 +6,23 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:18:13 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 14:05:30 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:40:36 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static t_dda	cast_one_ray(t_vec2f *ray, t_map *map)
+static t_dda	cast_one_ray(t_vec2f *ray, t_map *map, int done)
 {
 	t_dda	dda;
-	int		done;
 
-	done = 0;
 	dda = (t_dda){.pos.x = map->player.pos_map.x,
 		.pos.y = map->player.pos_map.y};
 	init_dda(ray, map, &dda);
 	while (!done)
 	{
-		if ((dda.side_dist.x < dda.side_dist.y && dda.side_dist.x != 0) || dda.side_dist.y == 0)
+		if ((dda.side_dist.x < dda.side_dist.y && dda.side_dist.x != 0)
+			|| dda.side_dist.y == 0)
 		{
 			dda.side_dist.x += dda.delta.x;
 			dda.pos.x += dda.step.x;
@@ -44,12 +43,14 @@ static t_dda	cast_one_ray(t_vec2f *ray, t_map *map)
 void	cast_rays(t_gui *gui, t_map *map)
 {
 	int		i;
+	int		done;
 	t_dda	dda;
 
 	i = -1;
+	done = 0;
 	while (++i < NB_RAYS)
 	{
-		dda = cast_one_ray(&map->player.rays[i], map);
+		dda = cast_one_ray(&map->player.rays[i], map, done);
 		if (dda.horizontal_hit)
 			dda.dist = dda.side_dist.y - dda.delta.y;
 		else

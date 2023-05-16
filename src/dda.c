@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:36:17 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/15 16:50:35 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:38:32 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda)
+static void	init_deltas(t_dda *dda, t_vec2f *ray)
 {
-	t_player	p;
-
-	p = map->player;
 	if (ray->x != 0)
 		dda->delta.x = fabs(1 / ray->x);
 	else
@@ -27,6 +24,14 @@ void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda)
 		dda->delta.y = fabs(1 / ray->y);
 	else
 		dda->delta.y = 0;
+}
+
+void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda)
+{
+	t_player	p;
+
+	p = map->player;
+	init_deltas(dda, ray);
 	if (ray->x < 0)
 	{
 		dda->step.x = -1;

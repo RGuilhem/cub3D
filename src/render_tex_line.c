@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:01:08 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 14:32:13 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:35:51 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	draw_texture(t_dda *dda, t_gui *gui, t_map *map, int tex_x)
 	while (++y < dda->end)
 	{
 		tex_y = (int)tex_pos & ((int)TEX_S - 1);
-		put_pixel(&gui->screen, dda->ray_num, y, get_color_tex(texture, tex_x, tex_y));
+		put_pixel(&gui->screen, dda->ray_num, y,
+			get_color_tex(texture, tex_x, tex_y));
 		tex_pos += step;
 	}
 }

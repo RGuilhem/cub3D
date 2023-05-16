@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:02:29 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/16 11:51:53 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 14:36:35 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	define_angle_of_rays(t_map *map)
 	double		opp;
 	double		a;
 
-	opp = 2 * (define_lenght_direc(map->player.dir) * 0.60) / NB_RAYS; //TODO temporary
+	opp = 2 * (define_lenght_direc(map->player.dir) * 0.60) / NB_RAYS;
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
@@ -62,7 +62,8 @@ void	define_angle_of_rays(t_map *map)
 	i = -1;
 	while (++i < NB_RAYS / 2)
 	{
-		a = -atanl((opp * (NB_RAYS / 2 - i)) / define_lenght_direc(map->player.dir));
+		a = -atanl((opp * (NB_RAYS / 2 - i))
+				/ define_lenght_direc(map->player.dir));
 		gen_matrix(a, &map->player.m_rotations[i]);
 	}
 }
