@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:34:17 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 16:26:29 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:31:51 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@ void	handle_mice(t_gui *gui, t_map *map)
 {
 	int			x;
 	int			y;
-	int			steps;
-	const int	mouse_sens = 120;
 
 	mlx_mouse_get_pos(gui->mlx_win, &x, &y);
-	steps = (int)fabs((double)(WIN_H / 2 - x)) / mouse_sens;
 	if (x < WIN_W / 2)
-		rotate_player(&map->player, L_ARROW, steps);
+		rotate_player(&map->player, L_ARROW, 2);
 	else if (x > WIN_W / 2)
-		rotate_player(&map->player, R_ARROW, steps);
+		rotate_player(&map->player, R_ARROW, 2);
 	mlx_mouse_move(gui->mlx_win, WIN_W / 2, WIN_H / 2);
 	mlx_mouse_hide();
 }
