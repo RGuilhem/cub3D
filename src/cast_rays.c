@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:18:13 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 11:03:22 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 11:31:18 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	cast_rays(t_gui *gui, t_map *map)
 		}
 		start = (t_vec2f){.x = i, .y = -(WIN_H / dist) / 2 + WIN_H / 2};
 		end = (t_vec2f){.x = i, .y = (WIN_H / dist) / 2 + WIN_H / 2};
-		draw_line(&gui->screen, &start, &end);
+		if (dda.horizontal_hit)
+			draw_line(&gui->screen, &start, &end, 0x00FF0000);
+		else
+			draw_line(&gui->screen, &start, &end, 0x00DF0000);
 	}
 }

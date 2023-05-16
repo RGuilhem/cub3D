@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:35:57 by graux             #+#    #+#             */
-/*   Updated: 2023/05/11 16:06:41 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 11:29:24 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_line(t_vec2f *dir, t_vec2f *a, t_vec2f *b, double *step)
 	dir->y /= *step;
 }
 
-void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b)
+void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b, int color)
 {
 	t_vec2f	dir;
 	double	step;
@@ -39,7 +39,7 @@ void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b)
 	while (++i <= step)
 	{
 		if (pos.x >= 0 && pos.x < WIN_W && pos.y >= 0 && pos.y < WIN_H)
-			put_pixel(frame, pos.x, pos.y, 0x00FF0000);
+			put_pixel(frame, pos.x, pos.y, color);
 		pos.x += dir.x;
 		pos.y += dir.y;
 	}
