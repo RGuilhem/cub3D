@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -O2 -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -rf
 
 SRC = main.c				\

@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:35:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:29 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/16 10:53:27 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ void	setup_dir(t_vec2f *dir, t_player *player, int keycode)
 		rotate_vec2f(dir, &rot_left);
 }
 
+static int	can_move(t_map *map, t_player *player, t_vec2f *move)
+{
+	t_vec2i	new_pos;
+
+	new_pos.x = (int)(player->pos.x + move->x);
+	new_pos.y = (int)(player->pos.y + move->y);
+	if (map->grid[new_pos.y][new_pos.x] == WALL)
+		return (0);
+	return (1);
+}
+
 void	move_player(t_map *map, t_player *player, int keycode)
 {
 	t_vec2f	move;
@@ -53,10 +64,11 @@ void	move_player(t_map *map, t_player *player, int keycode)
 	else if (keycode == KEY_D)
 		move = (t_vec2f){.x = dir.x * MOVE_SIZE,
 			.y = dir.y * MOVE_SIZE};
-	if (player->pos.x + move.x > 0 && player->pos.x + move.x < map->size.x)
+	if (can_move(map, player, &move))
+	{
 		player->pos.x += move.x;
-	if (player->pos.y + move.y > 0 && player->pos.y + move.y < map->size.y)
 		player->pos.y += move.y;
+	}
 	player->pos_map.x = (int) player->pos.x;
 	player->pos_map.y = (int) player->pos.y;
 }
