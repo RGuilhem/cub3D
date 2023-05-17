@@ -6,16 +6,20 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:52:56 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 14:08:17 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 15:09:06 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 #include "../includes/mlx.h"
+#include "../libft/includes/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*find_texture_path(char	**lines, char side)
+const char	*g_char_side[END_MAP_DIR] = {
+[NO] = "NO", [SO] = "SO", [WE] = "WE", [EA] = "EA"};
+
+static char	*find_texture_path(char	**lines, int side)
 {
 	int		i;
 	int		j;
@@ -25,7 +29,7 @@ char	*find_texture_path(char	**lines, char side)
 	j = 2;
 	while (lines[++i])
 	{
-		if (lines[i][0] == side)
+		if (ft_strncmp(g_char_side[side], lines[i], 2) == 0)
 		{
 			while (lines[i][j] == ' ')
 				j++;
@@ -43,8 +47,6 @@ int	parse_textures(t_gui *gui, t_map *map, char **lines)
 {
 	int			i;
 	char		*p;
-	const char	char_side[END_MAP_DIR] = {
-	[NO] = 'N', [SO] = 'S', [WE] = 'W', [EA] = 'E'};
 	t_vec2i		s;
 	int			status;
 
@@ -53,7 +55,7 @@ int	parse_textures(t_gui *gui, t_map *map, char **lines)
 	status = 1;
 	while (++i < END_MAP_DIR)
 	{
-		p = find_texture_path(lines, char_side[i]);
+		p = find_texture_path(lines, i);
 		map->textures[i].img = mlx_xpm_file_to_image(gui->mlx, p, &s.x, &s.y);
 		if (!map->textures[i].img)
 			status = 0;
@@ -62,8 +64,8 @@ int	parse_textures(t_gui *gui, t_map *map, char **lines)
 			map->textures[i].address = mlx_get_data_addr(map->textures[i].img,
 					&map->textures[i].bpp, &map->textures[i].ll,
 					&map->textures[i].endian);
+			printf("w: %d, h: %d -> path: %s\n", s.x, s.y, p);
 		}
-		printf("w: %d, h: %d -> path: %s\n", s.x, s.y, p);
 	}
 	return (status);
 }
