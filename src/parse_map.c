@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 11:43:27 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 12:59:36 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,22 @@
 static int	find_grid_start(char **lines)
 {
 	int	i;
+	int	num;
 
-	i = 0;
-	while (lines[i] && lines[i][0] != 'C')
+	i = -1;
+	num = 0;
+	while (lines[++i] && num < 6)
+	{
+		if (lines[i][0] != '\n')
+			num++;
+	}
+	while (lines[i])
+	{
+		if (lines[i][0] != '\n')
+			break ;
 		i++;
-	return (i + 1);
+	}
+	return (i);
 }
 
 static int	init_mapgrid(t_map *map, char **lines)
@@ -95,7 +106,7 @@ int	parse_map(t_map *map, char **lines)
 	int		i;
 	int		j;
 
-	grid = &lines[find_grid_start(lines) + 1];
+	grid = &lines[find_grid_start(lines)];
 	if (!init_mapgrid(map, grid))
 		return (1);
 	i = -1;

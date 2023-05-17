@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 11:53:52 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:01:12 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,9 @@ int	main(int argc, char *argv[])
 	int		okay;
 
 	(void) argc;
-	sleep(10);
 	init_gui(&gui);
 	okay = map_load(&gui, &map, argv[1]);
 	print_map(&map);
-	if (!okay)
-		return (0);
 	init_minimap(&gui, &map);
 	setup_background(&gui, &map);
 	define_angle_of_rays(&map);
