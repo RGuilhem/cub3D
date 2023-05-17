@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 14:02:37 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:23:44 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	render_frame(t_data *data)
 	gui = data->gui;
 	map = data->map;
 	apply_events(data);
-	handle_mice(gui, map);
+	handle_mice(gui, map, 0);
 	reset_image(gui, &gui->screen);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->background.img, 0, 0);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);

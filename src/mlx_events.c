@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:16:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:20:33 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:24:36 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	reg_keyup(int keycode, t_gui *gui)
 {
 	int	i;
 
+	if (keycode == KEY_M)
+		handle_mice(NULL, NULL, 1);
 	i = -1;
 	while (++i < MAX_KEYS)
 	{

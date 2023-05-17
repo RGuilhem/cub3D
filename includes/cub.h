@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:59:29 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:22:12 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_map
 # define KEY_S 1
 # define KEY_A 0
 # define KEY_D 2
+# define KEY_M 46
 # define KEY_ESC 53
 # define ROT_ANG -0.0523599
 # define ROT_90 1.5708
@@ -156,7 +157,7 @@ int		reg_keyup(int keycode, t_gui *gui);
 int		reg_keydown(int keycode, t_gui *gui);
 void	move_player(t_map *map, t_player *player, int keycode);
 void	rotate_player(t_player *player, int dir, int steps);
-void	handle_mice(t_gui *gui, t_map *map);
+void	handle_mice(t_gui *gui, t_map *map, int switch_state);
 void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 
 void	put_pixel(t_frame *fra, int x, int y, int color);
