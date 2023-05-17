@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 11:44:06 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:06:38 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,6 @@ int		free_ppsize(char **tab, int size);
 void	cleanup_map(t_gui *gui, t_map *map);
 void	cleanup_gui(t_gui *gui);
 int		put_error(char *msg);
+int		exit_program(t_data *data);
 
 #endif

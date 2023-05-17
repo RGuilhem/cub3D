@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 09:26:46 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/17 09:51:05 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 13:07:15 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "../includes/mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int	exit_program(t_data *data)
+{
+	cleanup_map(data->gui, data->map);
+	cleanup_gui(data->gui);
+	exit(EXIT_SUCCESS);
+}
 
 void	cleanup_map(t_gui *gui, t_map *map)
 {
