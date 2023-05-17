@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 14:22:12 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:29:36 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@
 # define WALL_COL 0x00FF0000
 # define PLAYER_COL 0x0000FF00
 # define PIX_PER_BLOCK 10
-
-//TODO error checking while parsing:
-//TODO     - color
-//TODO     - textures
-//TODO norme
 
 typedef struct s_frame
 {

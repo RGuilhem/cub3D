@@ -6,28 +6,13 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:34:17 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 14:27:16 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:29:57 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 #include "../includes/mlx.h"
 #include <math.h>
-
-/*
-static int	is_pressed(t_gui *gui, int key)
-{
-	int	i;
-
-	i = -1;
-	while (++i < MAX_KEYS)
-	{
-		if (gui->keys_pressed[i] == key)
-			return (1);
-	}
-	return (0);
-}
-*/
 
 void	handle_mice(t_gui *gui, t_map *map, int switch_state)
 {
