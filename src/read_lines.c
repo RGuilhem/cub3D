@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:54:21 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 09:33:44 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:38:48 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static char	**add_line(char **lines, char *added_line)
 	if (!new_lines)
 	{
 		free(added_line);
-		return ((char **)(long)free_ppsize(lines, lines_number,
-					"reading file"));
+		return ((char **)(long)free_ppsize(lines, lines_number));
 	}
 	i = -1;
 	while (++i < lines_number)

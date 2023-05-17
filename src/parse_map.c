@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 09:38:16 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 11:10:19 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ static int	init_mapgrid(t_map *map, char **lines)
 		if (ft_strlen(lines[i]) > max)
 			max = ft_strlen(lines[i]);
 	}
-	map->size = (t_vec2i){.x = max, .y = i};
+	map->size = (t_vec2i){.x = max + 1, .y = i + 2};
 	map->grid = malloc(sizeof(char *) * map->size.y);
 	if (!map->grid)
 		return (0);
 	i = -1;
 	while (++i < map->size.y)
 	{
-		map->grid[i] = malloc(sizeof(char) * (map->size.x));
+		map->grid[i] = ft_calloc(map->size.x, sizeof(char));
 		if (!map->grid[i])
 			return (0);
+		ft_memset(map->grid[i], '0', map->size.x);
 	}
 	return (1);
 }
@@ -68,6 +69,8 @@ static int	add_map_elem(t_map *map, char **grid, int i, int j)
 	char		c;
 
 	c = grid[i][j];
+	i++;
+	j++;
 	if (c == EMPTY || c == ' ')
 		map->grid[i][j] = EMPTY;
 	else if (c == WALL)
@@ -96,7 +99,7 @@ int	parse_map(t_map *map, char **lines)
 	if (!init_mapgrid(map, grid))
 		return (1);
 	i = -1;
-	while (++i < map->size.y)
+	while (++i < map->size.y - 2)
 	{
 		j = -1;
 		while (grid[i][++j] && grid[i][j] != '\n')
@@ -104,8 +107,11 @@ int	parse_map(t_map *map, char **lines)
 			if (!add_map_elem(map, grid, i, j))
 				return (0);
 		}
-		while (j < map->size.x)
-			map->grid[i][j++] = EMPTY;
+		while (j < map->size.x - 1)
+		{
+			map->grid[i][j + 1] = EMPTY;
+			j++;
+		}
 	}
 	return (1);
 }

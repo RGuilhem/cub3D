@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 09:51:16 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 11:12:28 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	read_lines(const char *path, char ***lines);
 int		parse_colors(t_map *map, char **lines);
 int		parse_textures(t_gui *gui, t_map *map, char **lines);
 int		parse_map(t_map *map, char **lines);
+int		check_map(t_map *map);
 
 void	setup_events(t_gui *gui);
 void	apply_events(t_data *data);
