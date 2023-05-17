@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:01:12 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:03:04 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	main(int argc, char *argv[])
 	t_data	data;
 	int		okay;
 
-	(void) argc;
+	if (argc != 2)
+		return (put_error("Invalid number of arguments"));
 	init_gui(&gui);
 	okay = map_load(&gui, &map, argv[1]);
 	print_map(&map);
