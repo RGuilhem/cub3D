@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:17:12 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:25:18 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ static int	render_frame(t_data *data)
 	return (1);
 }
 
-void	print_map(t_map *map)
+static void	print_map(t_map *map)
 {
 	int	i;
 	int	j;
 
+	printf("\nLoaded map:\n");
 	i = -1;
 	while (++i < map->size.y)
 	{

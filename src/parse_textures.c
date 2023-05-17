@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:52:56 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 10:05:34 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 13:26:13 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ int	parse_textures(t_gui *gui, t_map *map, char **lines)
 	while (++i < END_MAP_DIR)
 	{
 		path = find_texture_path(lines, char_side[i]);
-		printf("path: %s\n", path);
 		map->textures[i].img = mlx_xpm_file_to_image(gui->mlx, path, &w, &h);
 		map->textures[i].address = mlx_get_data_addr(map->textures[i].img,
 				&map->textures[i].bpp, &map->textures[i].ll,
 				&map->textures[i].endian);
-		printf("w: %d, h: %d\n", w, h);
+		printf("w: %d, h: %d -> path: %s\n", w, h, path);
 	}
 	return (1);
 }
