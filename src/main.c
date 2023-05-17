@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 15:40:34 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 11:41:31 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	render_frame(t_data *data)
 	return (1);
 }
 
-static	void	print_map(t_map *map)
+void	print_map(t_map *map)
 {
 	int	i;
 	int	j;
@@ -93,12 +93,15 @@ int	main(int argc, char *argv[])
 	t_gui	gui;
 	t_map	map;
 	t_data	data;
+	int		okay;
 
 	(void) argc;
 	init_gui(&gui);
-	map_load(&gui, &map, argv[1]);
-	init_minimap(&gui, &map);
+	okay = map_load(&gui, &map, argv[1]);
 	print_map(&map);
+	if (!okay)
+		return (0);
+	init_minimap(&gui, &map);
 	setup_background(&gui, &map);
 	define_angle_of_rays(&map);
 	setup_events(&gui);

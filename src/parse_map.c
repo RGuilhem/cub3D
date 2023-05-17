@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 11:10:19 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 11:43:27 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	parse_map(t_map *map, char **lines)
 		}
 		while (j < map->size.x - 1)
 		{
-			map->grid[i][j + 1] = EMPTY;
+			map->grid[i + 1][j + 1] = EMPTY;
 			j++;
 		}
 	}

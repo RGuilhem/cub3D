@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:36 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 09:56:21 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/17 11:44:04 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	map_load(t_gui *gui, t_map *map, char *map_path)
 		return (put_error("invalid textures"));
 	if (!parse_map(map, lines))
 		return (put_error("reading map"));
+	if (!check_map(map))
+		return (put_error("invalid map"));
 	return (1);
 }

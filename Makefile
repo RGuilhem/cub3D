@@ -22,6 +22,7 @@ SRC = main.c				\
 	  minimap.c				\
 	  handle_mice.c			\
 	  free_utils.c			\
+	  check_map.c			\
 	  mlx_events.c
 SRC_DIR = $(addprefix src/, $(SRC))
 OBJ = ${SRC_DIR:.c=.o}
