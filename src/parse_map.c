@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 12:59:36 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:47:23 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	init_mapgrid(t_map *map, char **lines)
 	map->grid = malloc(sizeof(char *) * map->size.y);
 	if (!map->grid)
 		return (0);
+	map->grid_setup = 1;
 	i = -1;
 	while (++i < map->size.y)
 	{

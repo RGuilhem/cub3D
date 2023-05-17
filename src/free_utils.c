@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 09:26:46 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/17 13:07:15 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:00:21 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,25 @@ void	cleanup_map(t_gui *gui, t_map *map)
 {
 	int	i;
 
-	i = -1;
-	while (++i < END_MAP_DIR)
-		mlx_destroy_image(gui->mlx, map->textures[i].img);
+	if (map->tex_setup)
+	{
+		i = -1;
+		while (++i < END_MAP_DIR)
+		{
+			if (map->textures[i].img)
+				mlx_destroy_image(gui->mlx, map->textures[i].img);
+		}
+	}
+	if (map->grid_setup)
+		free_ppsize(map->grid, map->size.y);
 }
 
 void	cleanup_gui(t_gui *gui)
 {
 	mlx_destroy_image(gui->mlx, gui->screen.img);
 	mlx_destroy_image(gui->mlx, gui->background.img);
-	mlx_destroy_image(gui->mlx, gui->minimap.img);
+	if (gui->minimap_setup)
+		mlx_destroy_image(gui->mlx, gui->minimap.img);
 	mlx_destroy_window(gui->mlx, gui->mlx_win);
 }
 
@@ -49,9 +58,15 @@ int	free_ppsize(char **tab, int size)
 {
 	int	i;
 
+	if (!tab)
+		return (0);
 	i = -1;
 	while (++i < size)
+	{
+		if (!tab[i])
+			break ;
 		free(tab[i]);
+	}
 	free(tab);
 	return (0);
 }

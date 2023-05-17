@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:18:58 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:59:29 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,9 @@
 # define PLAYER_COL 0x0000FF00
 # define PIX_PER_BLOCK 10
 
-//TODO exit program correctly
 //TODO error checking while parsing:
 //TODO     - color
 //TODO     - textures
-//TODO     - map
-//TODO malloc protection
-//TODO check with different order in map
-//TODO remove debug
-//TODO remove useless functions
 //TODO norme
 
 typedef struct s_frame
@@ -89,6 +83,8 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	int			tex_setup;
+	int			grid_setup;
 	int			f_color;
 	int			c_color;
 	t_frame		textures[4];
@@ -112,6 +108,7 @@ typedef struct s_map
 
 typedef struct s_gui
 {
+	int		minimap_setup;
 	void	*mlx;
 	void	*mlx_win;
 	t_frame	screen;
@@ -163,14 +160,12 @@ void	handle_mice(t_gui *gui, t_map *map);
 void	rotate_vec2f(t_vec2f *vec, t_mat2x2 *mat);
 
 void	put_pixel(t_frame *fra, int x, int y, int color);
-void	draw_line(t_frame *frame, t_vec2f *a, t_vec2f *b, int color);
 void	setup_background(t_gui *gui, t_map *map);
 void	init_minimap(t_gui *gui, t_map *map);
 
 void	define_angle_of_rays(t_map *map);
 double	define_lenght_direc(t_vec2f direc_player);
 void	create_rays(t_map *map);
-void	draw_rays(t_gui *gui, t_map *map);
 void	draw_minimap(t_gui *gui, t_map *map);
 
 void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda);

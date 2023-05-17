@@ -9,12 +9,10 @@ SRC = main.c				\
 	  parse_textures.c		\
 	  parse_map.c			\
 	  read_lines.c			\
-	  draw_line.c			\
 	  move_player.c			\
 	  rotate_player.c		\
 	  rotate_vec2f.c		\
 	  setup_background.c	\
-	  draw_rays.c			\
 	  raycasting.c			\
 	  cast_rays.c			\
 	  dda.c					\

@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:25:18 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:58:53 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ static int	render_frame(t_data *data)
 {
 	t_gui		*gui;
 	t_map		*map;
-	char		debug[1000];
 
 	gui = data->gui;
 	map = data->map;
 	apply_events(data);
-	//handle_mice(gui, map); //TODO temporary
+	handle_mice(gui, map);
 	reset_image(gui, &gui->screen);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->background.img, 0, 0);
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, gui->screen.img);
@@ -65,10 +64,6 @@ static int	render_frame(t_data *data)
 	cast_rays(gui, map);
 	mlx_put_image_to_window(gui->mlx, gui->mlx_win, gui->screen.img, 0, 0);
 	draw_minimap(gui, map);
-	sprintf(debug, "pos: %f %f pos_map: %d %d dir: %f %f", map->player.pos.x, map->player.pos.y, map->player.pos_map.x, map->player.pos_map.y, map->player.dir.x, map->player.dir.y);
-	mlx_string_put(gui->mlx, gui->mlx_win, 10, WIN_H - 12, 0x00, debug);
-	sprintf(debug, "size: %d %d", map->size.x, map->size.y);
-	mlx_string_put(gui->mlx, gui->mlx_win, 10, WIN_H - 30, 0x00, debug);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, gui->mlx_win);
 	return (1);
 }
@@ -97,7 +92,9 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (put_error("Invalid number of arguments"));
+	map = (t_map){.tex_setup = 0, .grid_setup = 0};
 	data = (t_data){.gui = &gui, .map = &map};
+	gui.minimap_setup = 0;
 	init_gui(&gui);
 	if (!map_load(&gui, &map, argv[1]))
 		exit_program(&data);
