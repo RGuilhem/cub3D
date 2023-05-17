@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:51:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:38:50 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 15:18:23 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ static void	init_val(int *val, char *line, int *i, int last)
 	if (!last)
 	{
 		end = ft_strchr(&line[*i], ',');
-		*end = '\0';
+		if (end)
+			*end = '\0';
 	}
 	*val = ft_atoi(&line[*i]);
 	*i += ft_strlen(&line[*i]);
 	if (!last)
-		*end = ',';
+	{
+		if (end)
+			*end = ',';
+	}
 }
 
 static void	init_rgb_from_line(int *r, int *g, int *b, char *line)
@@ -54,6 +58,21 @@ static void	init_rgb_from_line(int *r, int *g, int *b, char *line)
 	init_val(b, line, &i, 1);
 }
 
+static int	check_commas(char *line)
+{
+	int	i;
+	int	count;
+
+	i = -1;
+	count = 0;
+	while (line[++i])
+	{
+		if (line[i] == ',')
+			count++;
+	}
+	return (count == 2);
+}
+
 int	parse_colors(t_map *map, char **lines)
 {
 	int	i;
@@ -64,14 +83,14 @@ int	parse_colors(t_map *map, char **lines)
 	i = 0;
 	while (lines[i] && lines[i][0] != 'F')
 		i++;
-	if (!lines[i])
+	if (!lines[i] || !check_commas(lines[i]))
 		return (0);
 	init_rgb_from_line(&r, &g, &b, lines[i]);
 	map->f_color = color_from_rgb(r, g, b);
 	i = 0;
 	while (lines[i] && lines[i][0] != 'C')
 		i++;
-	if (!lines[i])
+	if (!lines[i] || !check_commas(lines[i]))
 		return (0);
 	init_rgb_from_line(&r, &g, &b, lines[i]);
 	map->c_color = color_from_rgb(r, g, b);
