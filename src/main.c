@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:06:20 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:17:12 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	main(int argc, char *argv[])
 	t_gui	gui;
 	t_map	map;
 	t_data	data;
-	int		okay;
 
 	if (argc != 2)
 		return (put_error("Invalid number of arguments"));
@@ -105,7 +104,7 @@ int	main(int argc, char *argv[])
 	init_minimap(&gui, &map);
 	setup_background(&gui, &map);
 	define_angle_of_rays(&map);
-	setup_events(&gui);
+	setup_events(&data);
 	mlx_loop_hook(gui.mlx, render_frame, &data);
 	mlx_loop(gui.mlx);
 	return (0);

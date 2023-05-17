@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:06:38 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:18:58 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_map
 # define KEY_S 1
 # define KEY_A 0
 # define KEY_D 2
+# define KEY_ESC 53
 # define ROT_ANG -0.0523599
 # define ROT_90 1.5708
 # define MOVE_SIZE 0.05
@@ -151,7 +152,7 @@ int		parse_textures(t_gui *gui, t_map *map, char **lines);
 int		parse_map(t_map *map, char **lines);
 int		check_map(t_map *map);
 
-void	setup_events(t_gui *gui);
+void	setup_events(t_data *data);
 void	apply_events(t_data *data);
 void	init_keys_list(t_gui *gui);
 int		reg_keyup(int keycode, t_gui *gui);

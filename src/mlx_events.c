@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:16:59 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 16:18:18 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:20:33 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	apply_events(t_data *data)
 	map = data->map;
 	while (++i < MAX_KEYS)
 	{
+		if (gui->keys_pressed[i] == KEY_ESC)
+			exit_program(data);
 		if (gui->keys_pressed[i] == KEY_W)
 			move_player(map, &map->player, gui->keys_pressed[i]);
 		else if (gui->keys_pressed[i] == KEY_S)
@@ -86,9 +88,10 @@ void	apply_events(t_data *data)
 	}
 }
 
-void	setup_events(t_gui *gui)
+void	setup_events(t_data *data)
 {
-	init_keys_list(gui);
-	mlx_hook(gui->mlx_win, 2, 0, reg_keydown, gui);
-	mlx_hook(gui->mlx_win, 3, 0, reg_keyup, gui);
+	init_keys_list(data->gui);
+	mlx_hook(data->gui->mlx_win, 2, 0, reg_keydown, data->gui);
+	mlx_hook(data->gui->mlx_win, 3, 0, reg_keyup, data->gui);
+	mlx_hook(data->gui->mlx_win, 17, 0, exit_program, data);
 }
