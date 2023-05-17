@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:51:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 16:52:57 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 13:22:47 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,12 @@ int	parse_colors(t_map *map, char **lines)
 	i = 0;
 	while (lines[i] && lines[i][0] != 'F')
 		i++;
-	printf("%s\n", lines[i]);
 	init_rgb_from_line(&r, &g, &b, lines[i]);
 	map->f_color = color_from_rgb(r, g, b);
-	printf("f_color: %d\n", map->f_color);
 	i = 0;
 	while (lines[i] && lines[i][0] != 'C')
 		i++;
-	printf("%s\n", lines[i]);
 	init_rgb_from_line(&r, &g, &b, lines[i]);
 	map->c_color = color_from_rgb(r, g, b);
-	printf("c_color: %d\n", map->c_color);
 	return (1);
 }
