@@ -1,6 +1,8 @@
 cub3D
 src/.*.swp
 .*.swp
+*.swiftdoc
+*.swiftmodule
 # Prerequisites
 *.d
 
