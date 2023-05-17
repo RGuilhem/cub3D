@@ -1,9 +1,10 @@
 NO ./textures/Stone1L.xpm
 SO ./textures/BrownbrickL.xpm
 WE ./textures/Stone1D.xpm
-EA ./textures/BrownbrickD.xpm
+EA ./textures/ownbrickD.xpm
 
 C 135,206,250
+F 135,206,250
 
 1111111111111111111
 1000000000000000001

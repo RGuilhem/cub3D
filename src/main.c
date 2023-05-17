@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:08:52 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:58:53 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 14:02:37 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	if (argc != 2)
-		return (put_error("Invalid number of arguments"));
+		return (put_error("Error: Invalid number of arguments"));
 	map = (t_map){.tex_setup = 0, .grid_setup = 0};
 	data = (t_data){.gui = &gui, .map = &map};
 	gui.minimap_setup = 0;
