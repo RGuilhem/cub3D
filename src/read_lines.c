@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:54:21 by graux             #+#    #+#             */
-/*   Updated: 2023/05/10 11:36:03 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 09:33:44 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ static char	**add_line(char **lines, char *added_line)
 		return (NULL);
 	new_lines = malloc(sizeof(char *) * (lines_number + 2));
 	if (!new_lines)
-		return (NULL);
+	{
+		free(added_line);
+		return ((char **)(long)free_ppsize(lines, lines_number,
+					"reading file"));
+	}
 	i = -1;
 	while (++i < lines_number)
 		new_lines[i] = lines[i];

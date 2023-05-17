@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 17:22:47 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 09:51:16 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,10 @@ void	draw_minimap(t_gui *gui, t_map *map);
 void	init_dda(t_vec2f *ray, t_map *map, t_dda *dda);
 void	cast_rays(t_gui *gui, t_map *map);
 void	render_tex_line(t_dda *dda, t_gui *gui, t_map *map, t_vec2f *ray);
+
+int		free_ppsize(char **tab, int size);
+void	cleanup_map(t_gui *gui, t_map *map);
+void	cleanup_gui(t_gui *gui);
+int		put_error(char *msg);
 
 #endif

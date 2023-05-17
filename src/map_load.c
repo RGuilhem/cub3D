@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:36 by graux             #+#    #+#             */
-/*   Updated: 2023/05/16 09:01:01 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 09:56:21 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ int	map_load(t_gui *gui, t_map *map, char *map_path)
 	char	**lines;
 
 	if (!check_suffix(map_path))
-		return (0);
+		return (put_error("invalid file suffix"));
 	read_lines(map_path, &lines);
 	if (!lines)
-		return (0);
-	if (!parse_colors(map, lines) || !parse_textures(gui, map, lines)
-		|| !parse_map(map, lines))
-		return (0); // TODO cleanup in case of error
+		return (put_error("file could not be read"));
+	if (!parse_colors(map, lines))
+		return (put_error("invalid color format"));
+	if (!parse_textures(gui, map, lines))
+		return (put_error("invalid textures"));
+	if (!parse_map(map, lines))
+		return (put_error("reading map"));
 	return (1);
 }
