@@ -6,12 +6,22 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:36 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 11:44:04 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/17 12:07:47 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 #include "../libft/includes/libft.h"
+
+static void	free_lines(char **lines)
+{
+	int	i;
+
+	i = -1;
+	while (lines[++i])
+		free(lines[i]);
+	free(lines);
+}
 
 static int	check_suffix(char *map_path)
 {
@@ -33,6 +43,7 @@ int	map_load(t_gui *gui, t_map *map, char *map_path)
 		return (put_error("invalid textures"));
 	if (!parse_map(map, lines))
 		return (put_error("reading map"));
+	free_lines(lines);
 	if (!check_map(map))
 		return (put_error("invalid map"));
 	return (1);
