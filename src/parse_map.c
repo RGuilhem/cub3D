@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:42 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 13:47:23 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/18 10:58:41 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ static int	init_mapgrid(t_map *map, char **lines)
 static void	set_map_player_dir(t_map *map, char *c)
 {
 	if (*c == 'N')
-		map->player.dir = (t_vec2f){.x = 0, .y = -1};
+		map->player.dir = (t_vec2f){.x = 0, .y = -INIT_DIR};
 	else if (*c == 'S')
-		map->player.dir = (t_vec2f){.x = 0, .y = 1};
+		map->player.dir = (t_vec2f){.x = 0, .y = INIT_DIR};
 	else if (*c == 'E')
-		map->player.dir = (t_vec2f){.x = 1, .y = 0};
+		map->player.dir = (t_vec2f){.x = INIT_DIR, .y = 0};
 	else if (*c == 'W')
-		map->player.dir = (t_vec2f){.x = -1, .y = 0};
+		map->player.dir = (t_vec2f){.x = -INIT_DIR, .y = 0};
 }
 
 static int	add_map_elem(t_map *map, char **grid, int i, int j)
@@ -91,8 +91,8 @@ static int	add_map_elem(t_map *map, char **grid, int i, int j)
 	{
 		map->grid[i][j] = EMPTY;
 		map->player.pos_map = (t_vec2i){.x = j, .y = i};
-		map->player.pos = (t_vec2f){.x = (j - 0.5),
-			.y = (i - 0.5)};
+		map->player.pos = (t_vec2f){.x = (j + 0.5),
+			.y = (i + 0.5)};
 		player_set = 1;
 	}
 	else
@@ -125,5 +125,7 @@ int	parse_map(t_map *map, char **lines)
 			j++;
 		}
 	}
+	printf("init pos_map: %d %d\n", map->player.pos_map.x, map->player.pos_map.y);
+	printf("init pos: %f %f\n", map->player.pos.x, map->player.pos.y);
 	return (1);
 }
