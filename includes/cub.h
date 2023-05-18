@@ -6,7 +6,7 @@
 /*   By: graux <graux@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:34 by graux             #+#    #+#             */
-/*   Updated: 2023/05/17 14:29:36 by graux            ###   ########.fr       */
+/*   Updated: 2023/05/18 10:58:16 by graux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define TEX_S 64
 # define FOV 1.0472
 # define PITCH 100
+# define INIT_DIR 1.00001
 # define NB_RAYS WIN_W
 
 # define EMPTY_COL 0xFF000000
